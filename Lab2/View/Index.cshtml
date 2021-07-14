@@ -1,0 +1,23 @@
+﻿@page
+@using Lab2.Model;
+@model Lab2.Model.ViewModel
+@{ 
+    IEnumerable<Product> ListProduct = Model.Products;
+    IEnumerable<Category> ListCategory = Model.Categories;
+}
+
+<div class="text-center">
+    <h4>ProductList</h4>
+
+    @using (Html.BeginForm("Select", "Home", FormMethod.Post))
+    {
+        @Html.DropDownList("ListCategory", new SelectList(ListCategory), new { onchange = "form.submit;" })
+    }
+    @foreach(Product product in ListProduct)
+            {
+                <div>
+                    @product.ID - @product.Name 
+                </div>
+            }
+
+</div>
